@@ -46,12 +46,16 @@ class Provodnic
 
             foreach (string path in paths)                                         //foreach (DirectoryInfo path in paths)
             {
-                Console.WriteLine("  " + path);           //Console.WriteLine($"  {path.FullName} {path.CreationTime}");
+                var a = new DirectoryInfo(path);
+                //a.CreationTime
+                //Console.WriteLine("  " + path);
+                Console.WriteLine($"  {a.FullName}          {a.CreationTime}      Папка с файлами");
             }
             
-            foreach (string path1 in pathFiles)                                  //foreach (FileInfo path1 in pathFiles)
+            foreach (string path1 in pathFiles)
             {
-                Console.WriteLine("  " + path1);                         //Console.WriteLine("  " + path1.FullName);
+                FileInfo f = new FileInfo(path1);
+                Console.WriteLine($"  {f.FullName}          {f.CreationTime}      Тип данных{f.Extension}     Размер: {f.Length / 1024} КБ");
             }
 
             int poz = paths.Length + pathFiles.Length;
@@ -67,7 +71,7 @@ class Provodnic
             }
             else
             {
-                Process.Start(pathFiles[pos - paths.Length]);
+                Process.Start(new ProcessStartInfo { FileName = pathFiles[pos - paths.Length], UseShellExecute = true });
                 //ShowPapka(pathFiles[pos]);
             }
             //ShowPapka(paths[pos]);
