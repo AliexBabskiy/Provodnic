@@ -43,19 +43,34 @@ class Provodnic
             Console.Clear();
             string[] paths = Directory.GetDirectories(p);                          //DirectoryInfo[] paths = directory.GetDirectories(p);
             string[] pathFiles = Directory.GetFiles(p);                                 //FileInfo[] pathFiles = directory.GetFiles(p);
+            int i = 0;
 
             foreach (string path in paths)                                         //foreach (DirectoryInfo path in paths)
             {
                 var a = new DirectoryInfo(path);
                 //a.CreationTime
                 //Console.WriteLine("  " + path);
-                Console.WriteLine($"  {a.FullName}          {a.CreationTime}      Папка с файлами");
+                Console.SetCursorPosition(0, i);
+                Console.WriteLine($"  {a.FullName}");//          {a.CreationTime}      Папка с файлами");
+                Console.SetCursorPosition(130, i);
+                Console.Write($"{a.CreationTime}");
+                Console.SetCursorPosition(155, i);
+                Console.Write("Папка с файлами");
+                i ++;
             }
-            
+
             foreach (string path1 in pathFiles)
             {
                 FileInfo f = new FileInfo(path1);
-                Console.WriteLine($"  {f.FullName}          {f.CreationTime}      Тип данных{f.Extension}     Размер: {f.Length / 1024} КБ");
+                Console.SetCursorPosition(0, i);
+                Console.WriteLine($"  {f.FullName}");//          {f.CreationTime}      Тип данных{f.Extension}     Размер: {f.Length / 1024} КБ");
+                Console.SetCursorPosition(130, i);
+                Console.Write($"{f.CreationTime}");//      Тип данных{f.Extension}     Размер: {f.Length / 1024} КБ");
+                Console.SetCursorPosition(155, i);
+                Console.Write($"Тип данных{f.Extension}");//     Размер: {f.Length / 1024} КБ");
+                Console.SetCursorPosition(180, i);
+                Console.Write($"Размер: {f.Length / 1024} КБ");
+                i++;
             }
 
             int poz = paths.Length + pathFiles.Length;
